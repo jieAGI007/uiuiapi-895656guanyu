@@ -90,19 +90,177 @@
         
         /* 活动促销区域 */
         .promotion-section {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(135deg, #ff006e 0%, #ffbe0b 100%);
             color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
+            padding: 40px 35px;
+            border-radius: 20px;
+            margin: 40px 0;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(255,0,110,0.3);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.5);
+            animation: promotionGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes promotionGlow {
+            0%, 100% {
+                box-shadow: 0 15px 40px rgba(255,0,110,0.3),
+                           0 0 30px rgba(255,190,11,0.2);
+            }
+            50% {
+                box-shadow: 0 20px 50px rgba(255,0,110,0.5),
+                           0 0 50px rgba(255,190,11,0.4);
+            }
+        }
+        
+        .promotion-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg) translateX(-100%);
+            }
+            100% {
+                transform: rotate(0deg) translateX(100%);
+            }
         }
         
         .promotion-section h2 {
             color: white;
             border-bottom: none;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3),
+                        0 0 20px rgba(255,255,255,0.5);
+            animation: pulse 1.5s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .promotion-section p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .promotion-section strong {
+            font-size: 1.3rem;
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        /* 促销标签 */
+        .promo-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: #ff0066;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transform: rotate(15deg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: rotate(15deg) translateY(0);
+            }
+            50% {
+                transform: rotate(15deg) translateY(-10px);
+            }
+        }
+        
+        /* 礼物数额高亮 */
+        .gift-amount {
+            display: inline-block;
+            background: rgba(255,255,255,0.95);
+            color: #ff006e;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 0 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: amountPulse 1s ease-in-out infinite;
+        }
+        
+        @keyframes amountPulse {
+            0%, 100% {
+                transform: scale(1);
+                background: rgba(255,255,255,0.95);
+            }
+            50% {
+                transform: scale(1.1);
+                background: rgba(255,255,255,1);
+            }
+        }
+        
+        /* 联系信息强调 */
+        .contact-info {
+            display: inline-block;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 25px;
+            border-radius: 30px;
+            margin-top: 10px;
+            border: 2px solid rgba(255,255,255,0.5);
+            font-size: 1.1rem;
+            animation: contactGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes contactGlow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255,255,255,0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255,255,255,0.6);
+            }
+        }
+        
+        /* 悬停效果 */
+        .promotion-section:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+        
+        .promotion-section:hover .promo-badge {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(15deg); }
+            25% { transform: rotate(25deg); }
+            75% { transform: rotate(5deg); }
         }
         
         /* 高亮提示 */
@@ -335,9 +493,9 @@
         <div class="content-card">
             <h2>📝 UIUIAPI使用步骤流程</h2>
             <div class="steps">
-                <span class="step">1️⃣ <a href="https://sg.uiuiapi.com/register" style="color: white;">账号注册</a></span>
-                <span class="step">2️⃣ <a href="https://sg.uiuiapi.com/topup" style="color: white;">查看钱包</a></span>
-                <span class="step">3️⃣ <a href="https://sg.uiuiapi.com/token" style="color: white;">生成令牌</a></span>
+                <span class="step">1️⃣ <a href="https://sg.uiuiapi.com/register" target="_blank" style="color: white;">账号注册</a></span>
+                <span class="step">2️⃣ <a href="https://sg.uiuiapi.com/topup" target="_blank" style="color: white;">查看钱包</a></span>
+                <span class="step">3️⃣ <a href="https://sg.uiuiapi.com/token" target="_blank" style="color: white;">生成令牌</a></span>
                 <span class="step">4️⃣ <a href="https://uiuihao.com/post/83.html" target="_blank" style="color: white;">开发文档</a></span>
                 <span class="step">5️⃣ <a href="https://gpt.uiuiagi.top/" target="_blank" style="color: white;">快速使用</a></span>
             </div>
@@ -345,14 +503,27 @@
 
         <!-- 活动促销 -->
         <div class="promotion-section">
-            <h2>💰 4月用户充值达标赠送活动继续</h2>
-            <p><strong>⭐ 新用户"首充"特惠：</strong><br>
-            充值$20赠送$5 | 充值$50赠送$15 | 充值$100赠送$25<br>
-            充值$200赠送$50 | 充值$300赠送$75</p>
-            <p style="margin-top: 15px;">🔑 <strong>老用户优惠：</strong><br>
-            充值$30赠送$5 | 充值$50赠送$10 | 充值$100赠送$20<br>
-            充值$200赠送$45 | 充值$300赠送$70</p>
-            <p style="margin-top: 20px;">🤗 充值达标赠送咨询客服（✈️:uiuiGPT QQ:59996755）</p>
+            <div class="promo-badge">限时特惠预告</div>
+            <h2>🎉💰 8月充值狂欢月 💰🎉</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 25px;">📅 活动时间：08月01日 - 08月30日</p>
+            
+            <p><strong>⭐ 新用户"首充"特惠 ⭐</strong><br>
+            充值<span class="gift-amount">$20</span>赠送<span class="gift-amount">$5</span> | 
+            充值<span class="gift-amount">$50</span>赠送<span class="gift-amount">$15</span> | 
+            充值<span class="gift-amount">$100</span>赠送<span class="gift-amount">$25</span><br>
+            充值<span class="gift-amount">$200</span>赠送<span class="gift-amount">$50</span> | 
+            充值<span class="gift-amount">$300</span>赠送<span class="gift-amount">$75</span></p>
+            
+            <p style="margin-top: 20px;"><strong>🔑 老用户专属优惠 🔑</strong><br>
+            充值<span class="gift-amount">$30</span>赠送<span class="gift-amount">$5</span> | 
+            充值<span class="gift-amount">$50</span>赠送<span class="gift-amount">$10</span> | 
+            充值<span class="gift-amount">$100</span>赠送<span class="gift-amount">$20</span><br>
+            充值<span class="gift-amount">$200</span>赠送<span class="gift-amount">$45</span> | 
+            充值<span class="gift-amount">$300</span>赠送<span class="gift-amount">$70</span></p>
+            
+            <p style="margin-top: 25px;">
+                <span class="contact-info">🤗 立即充值享优惠！咨询客服 ✈️ uiuiGPT | QQ: 59996755</span>
+            </p>
         </div>
 
         <!-- 核心优势 -->
@@ -400,17 +571,17 @@
             <p>严令禁止使用API进行非法行为，一经发现，立即封号！</p>
         </div>
 
-        <!-- 模型说明 -->
-         <!-- <div class="content-card">
+        <!-- 模型说明
+        <div class="content-card">
             <h2>🔯 特别模型说明</h2>
             <ol>
                 <li>有前缀"openai"或"claude"的如：openai-gpt-4o，价格为官方价格的28.7%，特点：支持tool等官方参数，稳定且快。</li>
                 <li>有前缀"OpenAI"或"Claude"的如：OpenAI-gpt-4o，价格为官方价格的109%，特点：原生官方直转，最稳定可靠，作为突发情况的保障。</li>
             </ol>
-        </div> -->
+        </div>
 
-        <!-- 支持模型 -->
-        <!--  <div class="content-card">
+        <!-- 支持模型 
+        <div class="content-card">
             <h2>🎁 支持模型（实时更新，当前总数：232个）</h2>
             <details>
                 <summary>支持模型列表（点击展开）🔽🔽🔽</summary>
@@ -434,8 +605,8 @@
         <div class="content-card">
             <h2>📚 UIUI API开发接入教程</h2>
             <div style="text-align: center; margin: 20px 0;">
-                <a href="https://uiuihao.com/post/83.html" target="_blank" class="button">查看开发文档</a>
-                <a href="https://sg.uiuiapi.com/token" class="button">获取API KEY</a>
+                <a href="https://uiuihao.com/post/104.html" target="_blank" class="button">查看开发文档</a>
+                <a href="https://sg.uiuiapi.com/console/token" target="_blank" class="button">获取API KEY</a>
             </div>
             
             <h3>接口地址</h3>
@@ -486,36 +657,79 @@ OPENAI_API_KEY=your-api-key</code></pre>
 
         <!-- 会员计划 -->
         <div class="vip-section">
-            <h2>👑 UIUI API聚合平台会员限时招募</h2>
-            <p>尊享权益，助力企业与站长高效开发！</p>
+            <h2>👑 会员计划 - 充值折扣详情</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">累计充值越多，享受折扣越大！</p>
             
-            <h3>第3期会员权益（6月底截止）</h3>
-            <div class="vip-grid">
+            <h3>等级优惠详细说明</h3>
+            <div style="background: rgba(255,255,255,0.95); color: #2c3e50; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <th style="padding: 15px; text-align: left; border-radius: 10px 0 0 0;">等级</th>
+                            <th style="padding: 15px; text-align: left;">累计充值金额</th>
+                            <th style="padding: 15px; text-align: left;">折扣优惠</th>
+                            <th style="padding: 15px; text-align: left; border-radius: 0 10px 0 0;">并发限制</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: rgba(102, 126, 234, 0.1);">
+                            <td style="padding: 12px; font-weight: bold;">Tier 1</td>
+                            <td style="padding: 12px;">≥ 1,000元</td>
+                            <td style="padding: 12px; color: #e74c3c; font-weight: bold;">98折</td>
+                            <td style="padding: 12px; color: #27ae60; font-weight: bold;">无限制</td>
+                        </tr>
+                        <tr style="background: rgba(102, 126, 234, 0.05);">
+                            <td style="padding: 12px; font-weight: bold;">Tier 2</td>
+                            <td style="padding: 12px;">≥ 5,000元</td>
+                            <td style="padding: 12px; color: #e74c3c; font-weight: bold;">95折</td>
+                            <td style="padding: 12px; color: #27ae60; font-weight: bold;">无限制</td>
+                        </tr>
+                        <tr style="background: rgba(102, 126, 234, 0.1);">
+                            <td style="padding: 12px; font-weight: bold;">Tier 3</td>
+                            <td style="padding: 12px;">≥ 10,000元</td>
+                            <td style="padding: 12px; color: #e74c3c; font-weight: bold;">92折</td>
+                            <td style="padding: 12px; color: #27ae60; font-weight: bold;">无限制</td>
+                        </tr>
+                        <tr style="background: rgba(102, 126, 234, 0.05);">
+                            <td style="padding: 12px; font-weight: bold;">Tier 4</td>
+                            <td style="padding: 12px;">≥ 20,000元</td>
+                            <td style="padding: 12px; color: #e74c3c; font-weight: bold;">90折</td>
+                            <td style="padding: 12px; color: #27ae60; font-weight: bold;">无限制</td>
+                        </tr>
+                        <tr style="background: rgba(102, 126, 234, 0.1);">
+                            <td style="padding: 12px; font-weight: bold; border-radius: 0 0 0 10px;">Tier 5</td>
+                            <td style="padding: 12px;">≥ 50,000元</td>
+                            <td style="padding: 12px; color: #e74c3c; font-weight: bold;">85折</td>
+                            <td style="padding: 12px; color: #27ae60; font-weight: bold; border-radius: 0 0 10px 0;">无限制</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="vip-grid" style="margin-top: 30px;">
                 <div class="vip-card">
-                    <h4>💎 白金会员</h4>
-                    <p>付费购买：999元<br>
-                    累计充值5000元免费升级<br>
-                    全模型计费9.5折<br>
-                    每年免费领取50刀额度</p>
+                    <h4>📢 充值说明</h4>
+                    <ul style="text-align: left; list-style: none; padding: 0;">
+                        <li>✅ 充值金额自动积累</li>
+                        <li>✅ 等级终身有效，不会降级</li>
+                        <li>✅ 折扣立即生效，无需等待</li>
+                        <li>✅ 可分多次累计充值达到等级</li>
+                    </ul>
                 </div>
                 <div class="vip-card">
-                    <h4>💎 钻石会员</h4>
-                    <p>付费购买：3499元<br>
-                    累计充值50000元免费升级<br>
-                    全模型计费9折<br>
-                    每年免费领取100刀额度</p>
+                    <h4>💡 温馨提示</h4>
+                    <ul style="text-align: left; list-style: none; padding: 0;">
+                        <li>💰 余额永久有效，无使用期限</li>
+                        <li>💳 支持微信、支付宝支付方式充值</li>
+                        <li>📄 支持开具充值发票</li>
+                        <li>⚠️ 达标需联系客服手动升级对应等级</li>
+                    </ul>
                 </div>
             </div>
             
-            <h3 style="margin-top: 30px;">会员专享权益</h3>
-            <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-                <li>🎁 价格保护：充值后30天内兑换比例下降可免费补齐额度</li>
-                <li>🎁 计费优惠：全模型调用享受额外折扣</li>
-                <li>🎁 SVIP专享：免费部署同款API系统，永久免费更新及一对一解答</li>
-            </ul>
-            
             <p style="margin-top: 30px;">
-                <a href="https://sg.uiuiapi.com/topup" class="button" style="background: white; color: #f093fb;">立即加入会员</a>
+                <a href="https://sg.uiuiapi.com/console/topup" target="_blank" class="button" style="background: white; color: #f093fb;">立即充值升级</a>
+                <span class="contact-info" style="margin-left: 20px;">客服联系：✈️ uiuiGPT | QQ: 59996755</span>
             </p>
         </div>
     </div>
